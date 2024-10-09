@@ -19,7 +19,7 @@ img = st.file_uploader("Upload an image to generate an image variation", type=["
 if st.button("Generate Variation"):
     process.setApiKey(key)
     if img is not None:
-        url = f"media/tmp.{img.name.split('.')[1]}"
+        url = f"tmp.{img.name.split('.')[1]}"
         with open(url, 'wb') as f:
             f.write(img.getvalue())
         st.image(process.openai_create_image_variation(url))
