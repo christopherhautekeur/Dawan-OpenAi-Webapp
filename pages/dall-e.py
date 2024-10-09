@@ -1,7 +1,5 @@
 import streamlit as st
 from tools import Processing
-from IPython.display import Image
-import requests
 
 process = Processing()
 key = st.text_input("Your Api Key")
