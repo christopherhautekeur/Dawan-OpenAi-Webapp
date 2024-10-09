@@ -285,6 +285,12 @@ class Processing:
             response = "Error: API connection error. Please check your API key and try again."
         return response
 
-
-    def openai_create_image_variation(self, img, prompt):
-        pass
+    def openai_create_image_variation(self, img):
+        response = self.client.images.create_variation(
+            model="dall-e-2",
+            image=open(img, "rb"),
+            n=1,
+            size="1024x1024"
+        )
+        image_url = response.data[0].url
+        return image_url
