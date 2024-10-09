@@ -1,4 +1,6 @@
+import requests
 from openai import OpenAI, APIConnectionError
+
 
 
 class Processing:
@@ -268,3 +270,27 @@ class Processing:
             response = "Error: API connection error. Please check your API key and try again."
 
         return response
+
+    def openai_create_image(self, prompt):
+        try:
+            response = self.client.images.generate(
+                model="dall-e-3",
+                prompt=prompt,
+                size="1024x1024",
+                quality="standard",
+                n=1,
+            ).data[0].url
+            return self.download_image(response, prompt.replace(" ", "_") + ".png")
+        except APIConnectionError as e:
+            response = "Error: API connection error. Please check your API key and try again."
+
+        return response
+
+    def download_image(self, img_url, img_name):
+        img = requests.get(img_url).content
+        with open(f"media/{img_name}", "wb") as handler:
+            handler.write(img)
+        return f"media/{img_name}"
+
+    def openai_create_image_variation(self, img, prompt):
+        pass
