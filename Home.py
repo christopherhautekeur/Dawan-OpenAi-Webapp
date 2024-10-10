@@ -15,8 +15,9 @@ st.title("Dawan OpenAI Webapp")
 
 openai_page = st.Page("pages/openai.py", title="OpenAI")
 dalle_page = st.Page("pages/dall-e.py", title="DALL-E")
+whisper_page = st.Page("pages/whisper.py", title="Whisper")
 
-pg = st.navigation([openai_page,dalle_page], position="sidebar")
+pg = st.navigation([openai_page,dalle_page,whisper_page], position="sidebar")
 pg.run()
 
 

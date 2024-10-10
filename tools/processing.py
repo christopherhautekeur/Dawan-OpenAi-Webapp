@@ -294,3 +294,25 @@ class Processing:
         )
         image_url = response.data[0].url
         return image_url
+
+    def openai_transcribe(self, audio_file):
+        transcription = self.client.audio.transcriptions.create(
+            model="whisper-1",
+            file=audio_file
+        )
+        return transcription.text
+
+    def openai_translate(self, audio_file):
+        transcript = self.client.audio.translations.create(
+            model="whisper-1",
+            file=audio_file
+        )
+        return transcript.text
+
+    def text_to_speech(self, text):
+        response = self.client.audio.speech.create(
+            model="tts-1",
+            voice="fable",
+            input=text
+        )
+        return response
