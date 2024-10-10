@@ -40,3 +40,4 @@ if record:
         process.setApiKey(key)
         st.write(process.openai_transcribe(record))
 
+
